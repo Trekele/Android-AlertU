@@ -35,6 +35,7 @@ import java.util.List;
 public class MainActivity extends Activity
 {
 
+    private SwipeRefreshLayout swipeLayout;
     private ListView l;
     private ArrayList<Alert> returnArray;
     private ListView theListView;
@@ -45,8 +46,31 @@ public class MainActivity extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //This is needed to have a custom action bar layout
+        final android.app.ActionBar actionBar = getActionBar();
+        actionBar.setCustomView(R.layout.action_bar);
+        actionBar.setDisplayShowTitleEnabled(false);
+        actionBar.setDisplayShowCustomEnabled(true);
+        actionBar.setDisplayUseLogoEnabled(false);
+        setContentView(R.layout.activity_main);
+
         ArrayList<Alert> alerts = new ArrayList<>();
         populateListView();
+        swipeLayout = (SwipeRefreshLayout) findViewById(R.id.main);
+        swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run()
+                    {
+                        populateListView();
+                        swipeLayout.setRefreshing(false);
+                    }
+                },2000);
+
+            }
+        });
     }
 
     public void populateListView()
