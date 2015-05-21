@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <ImageView android:id="@+id/splashscreen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/logo"
+        android:background="#ff9a9a9a"
+        android:paddingLeft="100dp"
+        android:paddingRight="100dp"
+        android:scaleType="fitStart"
+        android:paddingTop="150dp" />
+</LinearLayout>
